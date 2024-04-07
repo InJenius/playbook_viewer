@@ -1,0 +1,845 @@
+{
+    "type": "bundle",
+    "id": "bundle--c1b890c6-b6fb-4310-992b-44067d8858b4",
+    "spec_version": "2.0",
+    "objects": [
+        {
+            "type": "identity",
+            "id": "identity--5e751ead-efe4-4553-ae1b-717c733ce13e",
+            "created": "2024-04-04T21:56:16.000Z",
+            "modified": "2024-04-04T21:56:16.000Z",
+            "name": "ORGNAME",
+            "identity_class": "organization",
+            "x_cta_country": [
+                "BR"
+            ],
+            "sectors": [
+                "government"
+            ]
+        },
+        {
+            "type": "report",
+            "id": "report--25137ec3-c206-4124-a25e-0e75a6dc9a95",
+            "created_by_ref": "identity--5e751ead-efe4-4553-ae1b-717c733ce13e",
+            "created": "2024-04-04T21:56:16.000Z",
+            "modified": "2024-04-04T21:56:16.000Z",
+            "name": "My first campaign",
+            "context": "suspicious-activity",
+            "object_refs": [
+                "attack-pattern--800f9819-7007-4540-a520-40e655876800",
+                "malware--8e461ca3-0996-4e6e-a0df-e2a5bbc51ebc",
+                "indicator--eeb90ab5-7174-42b5-ad01-d483b6edeea5",
+                "attack-pattern--2b742742-28c3-4e1b-bab7-8350d6300fa7",
+                "indicator--df2cac8a-27d0-4a77-b26a-1d226a6a04db",
+                "x-misp-attribute--973dd5f5-1482-432c-b35a-26ccd0eddebf",
+                "x-misp-object--c0a09cc9-14c9-4576-b20d-103e25ddfbdf",
+                "threat-actor--b2056ff0-00b9-482e-b11c-c771daa5f28a",
+                "malware--4b62ab58-c23b-4704-9c15-edd568cd59f8",
+                "relationship--d80ba00e-b65f-4a97-9150-3ee74f2e19fd",
+                "relationship--2d119d6f-d8e5-40b7-b257-64f1f66332de",
+                "relationship--8ba89497-efcf-4968-a387-069dac3abfc3",
+                "identity--5e751ead-efe4-4553-ae1b-717c733ce13e",
+                "campaign--76a0e7fa-0080-4278-96cc-b09287a69179",
+                "relationship--167009a6-74a9-4a43-b7cc-78681dec1c7f",
+                "relationship--e200a7fc-27a0-44ab-97b3-57051df0556f"
+            ],
+            "labels": [
+                "Threat-Report",
+                "misp:tool=\"MISP-STIX-Converter\"",
+                "Sector: Government"
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--800f9819-7007-4540-a520-40e655876800",
+            "created": "2024-04-04T21:56:16.000Z",
+            "modified": "2024-04-04T21:56:16.000Z",
+            "name": "T1612: Build Image on Host",
+            "description": "Adversaries may build a container image directly on a host to bypass defenses that monitor for the retrieval of malicious images from a public registry. A remote <code>build</code> request may be sent to the Docker API that includes a Dockerfile that pulls a vanilla base image, such as alpine, from a public or local registry and then builds a custom image upon it.(Citation: Docker Build Image)\n\nAn adversary may take advantage of that <code>build</code> API to build a custom image on the host that includes malware downloaded from their C2 server, and then they then may utilize [Deploy Container](https://attack.mitre.org/techniques/T1610) using that custom image.(Citation: Aqua Build Images on Hosts)(Citation: Aqua Security Cloud Native Threat Report June 2021) If the base image is pulled from a public registry, defenses will likely not detect the image as malicious since it\u2019s a vanilla image. If the base image already resides in a local registry, the pull may be considered even less suspicious since the image is already in the environment. ",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "defense-evasion"
+                }
+            ],
+            "labels": [
+                "misp:galaxy-name=\"Attack Pattern\"",
+                "misp:galaxy-type=\"mitre-attack-pattern\"",
+                "misp-galaxy:mitre-attack-pattern=\"Build Image on Host - T1612\""
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "T1612"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://attack.mitre.org/techniques/T1612"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://docs.docker.com/engine/api/v1.41/#operation/ImageBuild"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://blog.aquasec.com/malicious-container-image-docker-container-host"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://info.aquasec.com/hubfs/Threat%20reports/AquaSecurity_Cloud_Native_Threat_Report_2021.pdf?utm_campaign=WP%20-%20Jun2021%20Nautilus%202021%20Threat%20Research%20Report&utm_medium=email&_hsmi=132931006&_hsenc=p2ANqtz-_8oopT5Uhqab8B7kE0l3iFo1koirxtyfTehxF7N-EdGYrwk30gfiwp5SiNlW3G0TNKZxUcDkYOtwQ9S6nNVNyEO-Dgrw&utm_content=132931006&utm_source=hs_automation"
+                }
+            ],
+            "x_mitre_data_sources": [
+                "Image: Image Creation",
+                "Network Traffic: Network Connection Creation",
+                "Network Traffic: Network Traffic Flow",
+                "Network Traffic: Network Traffic Content"
+            ],
+            "x_mitre_platforms": [
+                "Containers"
+            ]
+        },
+        {
+            "type": "malware",
+            "id": "malware--8e461ca3-0996-4e6e-a0df-e2a5bbc51ebc",
+            "created": "2024-04-04T21:56:16.000Z",
+            "modified": "2024-04-04T21:56:16.000Z",
+            "name": "4H RAT",
+            "description": "[4H RAT](https://attack.mitre.org/software/S0065) is malware that has been used by [Putter Panda](https://attack.mitre.org/groups/G0024) since at least 2007. (Citation: CrowdStrike Putter Panda)",
+            "is_family": false,
+            "labels": [
+                "misp:galaxy-name=\"Malware\"",
+                "misp:galaxy-type=\"mitre-malware\"",
+                "misp-galaxy:mitre-malware=\"4H RAT - S0065\""
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "S0065"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://attack.mitre.org/software/S0065"
+                },
+                {
+                    "source_name": "url",
+                    "url": "http://cdn0.vox-cdn.com/assets/4589853/crowdstrike-intelligence-report-putter-panda.original.pdf"
+                }
+            ],
+            "x_mitre_platforms": [
+                "Windows"
+            ]
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--eeb90ab5-7174-42b5-ad01-d483b6edeea5",
+            "created_by_ref": "identity--5e751ead-efe4-4553-ae1b-717c733ce13e",
+            "created": "2024-04-04T21:56:16.000Z",
+            "modified": "2024-04-04T21:56:16.000Z",
+            "pattern": "[network-traffic:dst_ref.type = 'ipv4-addr' AND network-traffic:dst_ref.value = '10.100.20.4']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2024-04-04T21:56:16Z",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "misp-category",
+                    "phase_name": "Network activity"
+                }
+            ],
+            "labels": [
+                "misp:type=\"ip-dst\"",
+                "misp:category=\"Network activity\"",
+                "misp:to_ids=\"True\""
+            ],
+            "name": "Network activity"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--2b742742-28c3-4e1b-bab7-8350d6300fa7",
+            "created": "2024-04-04T14:06:50.000Z",
+            "modified": "2024-04-04T14:06:50.000Z",
+            "name": "T1566.002: Spearphishing Link",
+            "description": "Adversaries may send spearphishing emails with a malicious link in an attempt to gain access to victim systems. Spearphishing with a link is a specific variant of spearphishing. It is different from other forms of spearphishing in that it employs the use of links to download malware contained in email, instead of attaching malicious files to the email itself, to avoid defenses that may inspect email attachments. Spearphishing may also involve social engineering techniques, such as posing as a trusted source.\n\nAll forms of spearphishing are electronically delivered social engineering targeted at a specific individual, company, or industry. In this case, the malicious emails contain links. Generally, the links will be accompanied by social engineering text and require the user to actively click or copy and paste a URL into a browser, leveraging [User Execution](https://attack.mitre.org/techniques/T1204). The visited website may compromise the web browser using an exploit, or the user will be prompted to download applications, documents, zip files, or even executables depending on the pretext for the email in the first place. Adversaries may also include links that are intended to interact directly with an email reader, including embedded images intended to exploit the end system directly or verify the receipt of an email (i.e. web bugs/web beacons). Links may also direct users to malicious applications  designed to [Steal Application Access Token](https://attack.mitre.org/techniques/T1528)s, like OAuth tokens, in order to gain access to protected applications and information.(Citation: Trend Micro Pawn Storm OAuth 2017)",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "initial-access"
+                }
+            ],
+            "labels": [
+                "misp:galaxy-name=\"Attack Pattern\"",
+                "misp:galaxy-type=\"mitre-attack-pattern\"",
+                "misp-galaxy:mitre-attack-pattern=\"Spearphishing Link - T1566.002\""
+            ],
+            "external_references": [
+                {
+                    "source_name": "capec",
+                    "external_id": "CAPEC-163"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://attack.mitre.org/techniques/T1566/002"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://capec.mitre.org/data/definitions/163.html"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://blog.trendmicro.com/trendlabs-security-intelligence/pawn-storm-abuses-open-authentication-advanced-social-engineering-attacks"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://docs.microsoft.com/en-us/microsoft-365/security/office-365-security/anti-spoofing-protection?view=o365-worldwide"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://www.cyber.gov.au/sites/default/files/2019-03/spoof_email_sender_policy_framework.pdf"
+                }
+            ],
+            "x_mitre_data_sources": [
+                "Application Log: Application Log Content",
+                "Network Traffic: Network Traffic Content",
+                "Network Traffic: Network Traffic Flow"
+            ],
+            "x_mitre_platforms": [
+                "Linux",
+                "macOS",
+                "Windows",
+                "Office 365",
+                "SaaS",
+                "Google Workspace"
+            ]
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--df2cac8a-27d0-4a77-b26a-1d226a6a04db",
+            "created_by_ref": "identity--5e751ead-efe4-4553-ae1b-717c733ce13e",
+            "created": "2024-04-04T14:06:50.000Z",
+            "modified": "2024-04-04T14:06:50.000Z",
+            "pattern": "[url:value = 'https://dailymemes.net']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2024-04-04T14:06:50Z",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "misp-category",
+                    "phase_name": "Network activity"
+                }
+            ],
+            "labels": [
+                "misp:type=\"url\"",
+                "misp:category=\"Network activity\"",
+                "misp:to_ids=\"True\""
+            ],
+            "name": "Network activity"
+        },
+        {
+            "type": "x-misp-attribute",
+            "id": "x-misp-attribute--973dd5f5-1482-432c-b35a-26ccd0eddebf",
+            "created_by_ref": "identity--0c34c28b-9898-47e3-828a-3ad78d2bf760",
+            "created": "2024-04-04T21:51:17.000Z",
+            "modified": "2024-04-04T21:51:17.000Z",
+            "labels": [
+                "misp:type=\"target-location\"",
+                "misp:category=\"Targeting data\""
+            ],
+            "x_category": "Targeting data",
+            "x_type": "target-location",
+            "x_value": "brazil"
+        },
+        {
+            "type": "intrusion-set",
+            "id": "intrusion-set--b2056ff0-00b9-482e-b11c-c771daa5f28a",
+            "created": "2024-04-04T21:56:16.000Z",
+            "modified": "2024-04-04T21:56:16.000Z",
+            "name": "APT 29",
+            "description": "A 2015 report by F-Secure describe APT29 as: 'The Dukes are a well-resourced, highly dedicated and organized cyberespionage group that we believe has been working for the Russian Federation since at least 2008 to collect intelligence in support of foreign and security policy decision-making. The Dukes show unusual confidence in their ability to continue successfully compromising their targets, as well as in their ability to operate with impunity. The Dukes primarily target Western governments and related organizations, such as government ministries and agencies, political think tanks, and governmental subcontractors. Their targets have also included the governments of members of the Commonwealth of Independent States;Asian, African, and Middle Eastern governments;organizations associated with Chechen extremism;and Russian speakers engaged in the illicit trade of controlled substances and drugs. The Dukes are known to employ a vast arsenal of malware toolsets, which we identify as MiniDuke, CosmicDuke, OnionDuke, CozyDuke, CloudDuke, SeaDuke, HammerDuke, PinchDuke, and GeminiDuke. In recent years, the Dukes have engaged in apparently biannual large - scale spear - phishing campaigns against hundreds or even thousands of recipients associated with governmental institutions and affiliated organizations. These campaigns utilize a smash - and - grab approach involving a fast but noisy breakin followed by the rapid collection and exfiltration of as much data as possible.If the compromised target is discovered to be of value, the Dukes will quickly switch the toolset used and move to using stealthier tactics focused on persistent compromise and long - term intelligence gathering. This threat actor targets government ministries and agencies in the West, Central Asia, East Africa, and the Middle East; Chechen extremist groups; Russian organized crime; and think tanks. It is suspected to be behind the 2015 compromise of unclassified networks at the White House, Department of State, Pentagon, and the Joint Chiefs of Staff. The threat actor includes all of the Dukes tool sets, including MiniDuke, CosmicDuke, OnionDuke, CozyDuke, SeaDuke, CloudDuke (aka MiniDionis), and HammerDuke (aka Hammertoss). '",
+            "aliases": [
+                "Dukes",
+                "Group 100",
+                "Cozy Duke",
+                "CozyDuke",
+                "EuroAPT",
+                "CozyBear",
+                "CozyCar",
+                "Cozer",
+                "Office Monkeys",
+                "OfficeMonkeys",
+                "APT29",
+                "Cozy Bear",
+                "The Dukes",
+                "Minidionis",
+                "SeaDuke",
+                "Hammer Toss",
+                "YTTRIUM",
+                "Iron Hemlock",
+                "Grizzly Steppe"
+            ],
+            "labels": [
+                "misp:galaxy-name=\"Threat Actor\"",
+                "misp:galaxy-type=\"threat-actor\"",
+                "misp-galaxy:threat-actor=\"APT 29\""
+            ],
+            "external_references": [
+                {
+                    "source_name": "url",
+                    "url": "https://labsblog.f-secure.com/2015/09/17/the-dukes-7-years-of-russian-cyber-espionage/"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://www2.fireeye.com/rs/848-DID-242/images/rpt-apt29-hammertoss.pdf"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://www.us-cert.gov/sites/default/files/publications/AR-17-20045_Enhanced_Analysis_of_GRIZZLY_STEPPE_Activity.pdf"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://www.fireeye.com/blog/threat-research/2017/03/dissecting_one_ofap.html"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://www.cfr.org/interactive/cyber-operations/dukes"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://pylos.co/2018/11/18/cozybear-in-from-the-cold/"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://cloudblogs.microsoft.com/microsoftsecure/2018/12/03/analysis-of-cyberattack-on-u-s-think-tanks-non-profits-public-sector-by-unidentified-attackers/"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://www.secureworks.com/research/threat-profiles/iron-hemlock"
+                }
+            ],
+            "x_attribution-confidence": [
+                "50"
+            ],
+            "x_cfr-suspected-state-sponsor": [
+                "Russian Federation"
+            ],
+            "x_cfr-suspected-victims": [
+                "United States",
+                "China",
+                "New Zealand",
+                "Ukraine",
+                "Romania",
+                "Georgia",
+                "Japan",
+                "South Korea",
+                "Belgium",
+                "Kazakhstan",
+                "Brazil",
+                "Mexico",
+                "Turkey",
+                "Portugal",
+                "India"
+            ],
+            "x_cfr-target-category": [
+                "Government",
+                "Private sector"
+            ],
+            "x_cfr-type-of-incident": [
+                "Espionage"
+            ],
+            "x_country": [
+                "RU"
+            ]
+        },
+        {
+            "type": "malware",
+            "id": "malware--4b62ab58-c23b-4704-9c15-edd568cd59f8",
+            "created": "2024-04-04T21:56:16.000Z",
+            "modified": "2024-04-04T21:56:16.000Z",
+            "name": "Hacking Team UEFI Rootkit",
+            "description": "[Hacking Team UEFI Rootkit](https://attack.mitre.org/software/S0047) is a rootkit developed by the company Hacking Team as a method of persistence for remote access software. (Citation: TrendMicro Hacking Team UEFI)",
+            "is_family": false,
+            "labels": [
+                "misp:galaxy-name=\"Malware\"",
+                "misp:galaxy-type=\"mitre-malware\"",
+                "misp-galaxy:mitre-malware=\"Hacking Team UEFI Rootkit - S0047\""
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "S0047"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://attack.mitre.org/software/S0047"
+                },
+                {
+                    "source_name": "url",
+                    "url": "http://blog.trendmicro.com/trendlabs-security-intelligence/hacking-team-uses-uefi-bios-rootkit-to-keep-rcs-9-agent-in-target-systems/"
+                }
+            ]
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--d80ba00e-b65f-4a97-9150-3ee74f2e19fd",
+            "created": "2024-04-04T21:56:16.000Z",
+            "modified": "2024-04-04T21:56:16.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--eeb90ab5-7174-42b5-ad01-d483b6edeea5",
+            "target_ref": "attack-pattern--800f9819-7007-4540-a520-40e655876800"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--2d119d6f-d8e5-40b7-b257-64f1f66332de",
+            "created": "2024-04-04T21:56:16.000Z",
+            "modified": "2024-04-04T21:56:16.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--eeb90ab5-7174-42b5-ad01-d483b6edeea5",
+            "target_ref": "malware--8e461ca3-0996-4e6e-a0df-e2a5bbc51ebc"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--8ba89497-efcf-4968-a387-069dac3abfc3",
+            "created": "2024-04-04T14:06:50.000Z",
+            "modified": "2024-04-04T14:06:50.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--df2cac8a-27d0-4a77-b26a-1d226a6a04db",
+            "target_ref": "attack-pattern--2b742742-28c3-4e1b-bab7-8350d6300fa7"
+        },
+        {
+            "type": "campaign",
+            "id": "campaign--76a0e7fa-0080-4278-96cc-b09287a69179",
+            "name": "My first campaign",
+            "created": "2024-04-04T21:56:16.000Z",
+            "modified": "2024-04-04T21:56:16.000Z",
+            "description": "This was the first campaign that took place between 14th March 2022 until the 26th August 2022.",
+            "first_seen": "2022-03-14T00:00:00.000000+0000",
+            "last_seen": "2022-08-26T00:00:00.000000+0000"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--167009a6-74a9-4a43-b7cc-78681dec1c7f",
+            "relationship_type": "indicates",
+            "created": "2024-04-04T21:56:16.000Z",
+            "modified": "2024-04-04T21:56:16.000Z",
+            "source_ref": "indicator--eeb90ab5-7174-42b5-ad01-d483b6edeea5",
+            "target_ref": "campaign--76a0e7fa-0080-4278-96cc-b09287a69179"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e200a7fc-27a0-44ab-97b3-57051df0556f",
+            "relationship_type": "indicates",
+            "created": "2024-04-04T14:06:50.000Z",
+            "modified": "2024-04-04T14:06:50.000Z",
+            "source_ref": "indicator--df2cac8a-27d0-4a77-b26a-1d226a6a04db",
+            "target_ref": "campaign--76a0e7fa-0080-4278-96cc-b09287a69179"
+        },
+        {
+            "type": "report",
+            "id": "report--52f8675f-8c62-4a7a-8224-34da271a17b9",
+            "created": "2024-04-04T21:56:16.000Z",
+            "modified": "2024-04-04T21:56:16.000Z",
+            "name": "APT 29",
+            "description": "A 2015 report by F-Secure describe APT29 as: 'The Dukes are a well-resourced, highly dedicated and organized cyberespionage group that we believe has been working for the Russian Federation since at least 2008 to collect intelligence in support of foreign and security policy decision-making. The Dukes show unusual confidence in their ability to continue successfully compromising their targets, as well as in their ability to operate with impunity. The Dukes primarily target Western governments and related organizations, such as government ministries and agencies, political think tanks, and governmental subcontractors. Their targets have also included the governments of members of the Commonwealth of Independent States;Asian, African, and Middle Eastern governments;organizations associated with Chechen extremism;and Russian speakers engaged in the illicit trade of controlled substances and drugs. The Dukes are known to employ a vast arsenal of malware toolsets, which we identify as MiniDuke, CosmicDuke, OnionDuke, CozyDuke, CloudDuke, SeaDuke, HammerDuke, PinchDuke, and GeminiDuke. In recent years, the Dukes have engaged in apparently biannual large - scale spear - phishing campaigns against hundreds or even thousands of recipients associated with governmental institutions and affiliated organizations. These campaigns utilize a smash - and - grab approach involving a fast but noisy breakin followed by the rapid collection and exfiltration of as much data as possible.If the compromised target is discovered to be of value, the Dukes will quickly switch the toolset used and move to using stealthier tactics focused on persistent compromise and long - term intelligence gathering. This threat actor targets government ministries and agencies in the West, Central Asia, East Africa, and the Middle East; Chechen extremist groups; Russian organized crime; and think tanks. It is suspected to be behind the 2015 compromise of unclassified networks at the White House, Department of State, Pentagon, and the Joint Chiefs of Staff. The threat actor includes all of the Dukes tool sets, including MiniDuke, CosmicDuke, OnionDuke, CozyDuke, SeaDuke, CloudDuke (aka MiniDionis), and HammerDuke (aka Hammertoss). '",
+            "object_refs": [
+                "intrusion-set--b2056ff0-00b9-482e-b11c-c771daa5f28a",
+                "report--25137ec3-c206-4124-a25e-0e75a6dc9a95",
+                "report--e0308de5-18e9-4c18-aeca-7b4475d297aa"
+            ],
+            "labels": [
+                "atom-playbook",
+                "intrusion-set"
+            ]
+        },
+        {
+            "type": "identity",
+            "id": "identity--a92041e5-ec0e-4367-9a5a-ddbc885f14f7",
+            "created": "2024-04-04T21:51:00.000Z",
+            "modified": "2024-04-04T21:51:00.000Z",
+            "name": "ORGNAME",
+            "identity_class": "organization",
+            "x_cta_country": [
+                "GB"
+            ],
+            "sectors": [
+                "government"
+            ]
+        },
+        {
+            "type": "report",
+            "id": "report--e0308de5-18e9-4c18-aeca-7b4475d297aa",
+            "created_by_ref": "identity--a92041e5-ec0e-4367-9a5a-ddbc885f14f7",
+            "created": "2024-04-04T21:51:00.000Z",
+            "modified": "2024-04-04T21:51:00.000Z",
+            "name": "My second Campaign",
+            "context": "suspicious-activity",
+            "object_refs": [
+                "x-misp-attribute--af6d5e47-270c-4026-bc0d-5b2d5b144d1d",
+                "attack-pattern--f5946b5e-9408-485f-a7f7-b5efc88909b6",
+                "attack-pattern--6636bc83-0611-45a6-b74f-1f3daf635b8e",
+                "attack-pattern--1ecb2399-e8ba-4f6b-8ba7-5c27d49405cf",
+                "indicator--3c150a97-7b68-4c65-800b-da40f5f7e384",
+                "x-misp-object--b62647b6-0467-4122-bd4e-c87e428fd355",
+                "threat-actor--b2056ff0-00b9-482e-b11c-c771daa5f28a",
+                "malware--6e282bbf-5f32-476a-b879-ba77eec463c8",
+                "relationship--b2383086-0e6e-4c61-a996-368edcdf3eda",
+                "relationship--13e00e7d-a3dc-4d24-a035-d045f31d2db9",
+                "relationship--cbb600f4-1e55-4dbf-a208-4923c2039eea",
+                "identity--a92041e5-ec0e-4367-9a5a-ddbc885f14f7",
+                "campaign--e5dfb98e-a72d-45b7-8c39-43109e4ddab4",
+                "relationship--0247af0e-af06-49df-be92-2f3f88101387"
+            ],
+            "labels": [
+                "Threat-Report",
+                "misp:tool=\"MISP-STIX-Converter\"",
+                "Sector: Government"
+            ]
+        },
+        {
+            "type": "x-misp-attribute",
+            "id": "x-misp-attribute--af6d5e47-270c-4026-bc0d-5b2d5b144d1d",
+            "created_by_ref": "identity--0c34c28b-9898-47e3-828a-3ad78d2bf760",
+            "created": "2024-04-04T21:50:15.000Z",
+            "modified": "2024-04-04T21:50:15.000Z",
+            "labels": [
+                "misp:type=\"target-location\"",
+                "misp:category=\"Targeting data\""
+            ],
+            "x_category": "Targeting data",
+            "x_type": "target-location",
+            "x_value": "united kingdom"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--f5946b5e-9408-485f-a7f7-b5efc88909b6",
+            "created": "2024-04-04T21:51:00.000Z",
+            "modified": "2024-04-04T21:51:00.000Z",
+            "name": "T1056.004: Credential API Hooking",
+            "description": "Adversaries may hook into Windows application programming interface (API) functions to collect user credentials. Malicious hooking mechanisms may capture API calls that include parameters that reveal user authentication credentials.(Citation: Microsoft TrojanSpy:Win32/Ursnif.gen!I Sept 2017) Unlike [Keylogging](https://attack.mitre.org/techniques/T1056/001),  this technique focuses specifically on API functions that include parameters that reveal user credentials. Hooking involves redirecting calls to these functions and can be implemented via:\n\n* **Hooks procedures**, which intercept and execute designated code in response to events such as messages, keystrokes, and mouse inputs.(Citation: Microsoft Hook Overview)(Citation: Elastic Process Injection July 2017)\n* **Import address table (IAT) hooking**, which use modifications to a process\u2019s IAT, where pointers to imported API functions are stored.(Citation: Elastic Process Injection July 2017)(Citation: Adlice Software IAT Hooks Oct 2014)(Citation: MWRInfoSecurity Dynamic Hooking 2015)\n* **Inline hooking**, which overwrites the first bytes in an API function to redirect code flow.(Citation: Elastic Process Injection July 2017)(Citation: HighTech Bridge Inline Hooking Sept 2011)(Citation: MWRInfoSecurity Dynamic Hooking 2015)\n",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "collection"
+                },
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "credential-access"
+                }
+            ],
+            "labels": [
+                "misp:galaxy-name=\"Attack Pattern\"",
+                "misp:galaxy-type=\"mitre-attack-pattern\"",
+                "misp-galaxy:mitre-attack-pattern=\"Credential API Hooking - T1056.004\""
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "T1056.004"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://attack.mitre.org/techniques/T1056/004"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=TrojanSpy:Win32/Ursnif.gen!I&threatId=-2147336918"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://msdn.microsoft.com/library/windows/desktop/ms644959.aspx"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://www.endgame.com/blog/technical-blog/ten-process-injection-techniques-technical-survey-common-and-trending-process"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://www.adlice.com/userland-rootkits-part-1-iat-hooks/"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://www.mwrinfosecurity.com/our-thinking/dynamic-hooking-techniques-user-mode/"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://www.exploit-db.com/docs/17802.pdf"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://volatility-labs.blogspot.com/2012/09/movp-31-detecting-malware-hooks-in.html"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://github.com/prekageo/winhook"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://github.com/jay/gethooks"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://zairon.wordpress.com/2006/12/06/any-application-defined-hook-procedure-on-my-machine/"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://eyeofrablog.wordpress.com/2017/06/27/windows-keylogger-part-2-defense-against-user-land/"
+                },
+                {
+                    "source_name": "url",
+                    "url": "http://www.gmer.net/"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://msdn.microsoft.com/library/windows/desktop/ms686701.aspx"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://security.stackexchange.com/questions/17904/what-are-the-methods-to-find-hooked-functions-and-apis"
+                }
+            ],
+            "x_mitre_data_sources": [
+                "Process: OS API Execution",
+                "Process: Process Metadata"
+            ],
+            "x_mitre_platforms": [
+                "Windows"
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--6636bc83-0611-45a6-b74f-1f3daf635b8e",
+            "created": "2024-04-04T21:51:00.000Z",
+            "modified": "2024-04-04T21:51:00.000Z",
+            "name": "T1053.001: At (Linux)",
+            "description": "Adversaries may abuse the [at](https://attack.mitre.org/software/S0110) utility to perform task scheduling for initial, recurring, or future execution of malicious code. The [at](https://attack.mitre.org/software/S0110) command within Linux operating systems enables administrators to schedule tasks.(Citation: Kifarunix - Task Scheduling in Linux)\n\nAn adversary may use [at](https://attack.mitre.org/software/S0110) in Linux environments to execute programs at system startup or on a scheduled basis for persistence. [at](https://attack.mitre.org/software/S0110) can also be abused to conduct remote Execution as part of Lateral Movement and or to run a process under the context of a specified account.\n\nAdversaries may also abuse [at](https://attack.mitre.org/software/S0110) to break out of restricted environments by using a task to spawn an interactive system shell or to run system commands. Similarly, [at](https://attack.mitre.org/software/S0110) may also be used for [Privilege Escalation](https://attack.mitre.org/tactics/TA0004) if the binary is allowed to run as superuser via <code>sudo</code>.(Citation: GTFObins at)",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                },
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                },
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "privilege-escalation"
+                }
+            ],
+            "labels": [
+                "misp:galaxy-name=\"Attack Pattern\"",
+                "misp:galaxy-type=\"mitre-attack-pattern\"",
+                "misp-galaxy:mitre-attack-pattern=\"At (Linux) - T1053.001\""
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "T1053.001"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://attack.mitre.org/techniques/T1053/001"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://kifarunix.com/scheduling-tasks-using-at-command-in-linux/"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://gtfobins.github.io/gtfobins/at/"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://www.linkedin.com/pulse/getting-attacker-ip-address-from-malicious-linux-job-craig-rowland/"
+                }
+            ],
+            "x_mitre_data_sources": [
+                "Scheduled Job: Scheduled Job Creation",
+                "Command: Command Execution",
+                "Process: Process Creation"
+            ],
+            "x_mitre_platforms": [
+                "Linux"
+            ]
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--1ecb2399-e8ba-4f6b-8ba7-5c27d49405cf",
+            "created": "2024-04-04T21:51:00.000Z",
+            "modified": "2024-04-04T21:51:00.000Z",
+            "name": "T1547: Boot or Logon Autostart Execution",
+            "description": "Adversaries may configure system settings to automatically execute a program during system boot or logon to maintain persistence or gain higher-level privileges on compromised systems. Operating systems may have mechanisms for automatically running a program on system boot or account logon.(Citation: Microsoft Run Key)(Citation: MSDN Authentication Packages)(Citation: Microsoft TimeProvider)(Citation: Cylance Reg Persistence Sept 2013)(Citation: Linux Kernel Programming)\u00a0 These mechanisms may include automatically executing programs that are placed in specially designated directories or are referenced by repositories that store configuration information, such as the Windows Registry. An adversary may achieve the same goal by modifying or extending features of the kernel.\n\nSince some boot or logon autostart programs run with higher privileges, an adversary may leverage these to elevate privileges.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                },
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "privilege-escalation"
+                }
+            ],
+            "labels": [
+                "misp:galaxy-name=\"Attack Pattern\"",
+                "misp:galaxy-type=\"mitre-attack-pattern\"",
+                "misp-galaxy:mitre-attack-pattern=\"Boot or Logon Autostart Execution - T1547\""
+            ],
+            "external_references": [
+                {
+                    "source_name": "capec",
+                    "external_id": "CAPEC-564"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://attack.mitre.org/techniques/T1547"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://capec.mitre.org/data/definitions/564.html"
+                },
+                {
+                    "source_name": "url",
+                    "url": "http://msdn.microsoft.com/en-us/library/aa376977"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://msdn.microsoft.com/library/windows/desktop/aa374733.aspx"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://msdn.microsoft.com/library/windows/desktop/ms725475.aspx"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://blog.cylance.com/windows-registry-persistence-part-2-the-run-keys-and-search-order"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://www.tldp.org/LDP/lkmpg/2.4/lkmpg.pdf"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://technet.microsoft.com/en-us/sysinternals/bb963902"
+                }
+            ],
+            "x_mitre_data_sources": [
+                "File: File Creation",
+                "Windows Registry: Windows Registry Key Creation",
+                "Windows Registry: Windows Registry Key Modification",
+                "File: File Modification",
+                "Command: Command Execution",
+                "Process: Process Creation",
+                "Module: Module Load",
+                "Kernel: Kernel Module Load",
+                "Driver: Driver Load",
+                "Process: OS API Execution"
+            ],
+            "x_mitre_platforms": [
+                "Linux",
+                "macOS",
+                "Windows"
+            ]
+        },
+        {
+            "type": "indicator",
+            "id": "indicator--3c150a97-7b68-4c65-800b-da40f5f7e384",
+            "created_by_ref": "identity--a92041e5-ec0e-4367-9a5a-ddbc885f14f7",
+            "created": "2024-04-04T21:51:00.000Z",
+            "modified": "2024-04-04T21:51:00.000Z",
+            "pattern": "[file:name = 'badfile.ps1']",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2024-04-04T21:51:00Z",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "misp-category",
+                    "phase_name": "Artifacts dropped"
+                }
+            ],
+            "labels": [
+                "misp:type=\"filename\"",
+                "misp:category=\"Artifacts dropped\"",
+                "misp:to_ids=\"True\""
+            ],
+            "name": "Artifacts dropped"
+        },
+        {
+            "type": "malware",
+            "id": "malware--6e282bbf-5f32-476a-b879-ba77eec463c8",
+            "created": "2024-04-04T21:51:00.000Z",
+            "modified": "2024-04-04T21:51:00.000Z",
+            "name": "Red Alert 2.0",
+            "description": "[Red Alert 2.0](https://attack.mitre.org/software/S0539) is a banking trojan that masquerades as a VPN client.(Citation: Sophos Red Alert 2.0) ",
+            "is_family": false,
+            "labels": [
+                "misp:galaxy-name=\"Malware\"",
+                "misp:galaxy-type=\"mitre-malware\"",
+                "misp-galaxy:mitre-malware=\"Red Alert 2.0 - S0539\""
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "external_id": "S0539"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://attack.mitre.org/software/S0539"
+                },
+                {
+                    "source_name": "url",
+                    "url": "https://news.sophos.com/en-us/2018/07/23/red-alert-2-0-android-trojan-targets-security-seekers/"
+                }
+            ],
+            "x_mitre_platforms": [
+                "Android"
+            ]
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--b2383086-0e6e-4c61-a996-368edcdf3eda",
+            "created": "2024-04-04T21:51:00.000Z",
+            "modified": "2024-04-04T21:51:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--3c150a97-7b68-4c65-800b-da40f5f7e384",
+            "target_ref": "attack-pattern--f5946b5e-9408-485f-a7f7-b5efc88909b6"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--13e00e7d-a3dc-4d24-a035-d045f31d2db9",
+            "created": "2024-04-04T21:51:00.000Z",
+            "modified": "2024-04-04T21:51:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--3c150a97-7b68-4c65-800b-da40f5f7e384",
+            "target_ref": "attack-pattern--6636bc83-0611-45a6-b74f-1f3daf635b8e"
+        },
+        {
+            "type": "relationship",
+            "id": "relationship--cbb600f4-1e55-4dbf-a208-4923c2039eea",
+            "created": "2024-04-04T21:51:00.000Z",
+            "modified": "2024-04-04T21:51:00.000Z",
+            "relationship_type": "indicates",
+            "source_ref": "indicator--3c150a97-7b68-4c65-800b-da40f5f7e384",
+            "target_ref": "attack-pattern--1ecb2399-e8ba-4f6b-8ba7-5c27d49405cf"
+        },
+        {
+            "type": "campaign",
+            "id": "campaign--e5dfb98e-a72d-45b7-8c39-43109e4ddab4",
+            "name": "My second Campaign",
+            "created": "2024-04-04T21:51:00.000Z",
+            "modified": "2024-04-04T21:51:00.000Z",
+            "description": "If you thought the first one was bad, this next one is even worse. This campaign took place between 12th Jan 2023 until the 14th Feb 2024. During this time, not much happened but I need to pad out this description a bit further so that it looks more appealing on the screen and takes up more space. Hope that helps. Cheers.",
+            "first_seen": "2023-01-12T00:00:00.000000+0000",
+            "last_seen": "2024-02-14T00:00:00.000000+0000"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0247af0e-af06-49df-be92-2f3f88101387",
+            "relationship_type": "indicates",
+            "created": "2024-04-04T21:51:00.000Z",
+            "modified": "2024-04-04T21:51:00.000Z",
+            "source_ref": "indicator--3c150a97-7b68-4c65-800b-da40f5f7e384",
+            "target_ref": "campaign--e5dfb98e-a72d-45b7-8c39-43109e4ddab4"
+        }
+    ]
+}
