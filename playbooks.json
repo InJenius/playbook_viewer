@@ -1,4 +1,7 @@
 [
+    {"id": "report--af2cb8e5-5d1c-4964-bfe1-75ebc90f8627", "pb_file": "evasive-serpens.json", "last_updated": "2022-04-14T10:14:09.491Z", "title": "EVASIVE SERPENS", "industries": ["communications", "education", "financial-services", "government-regional", "infrastructure", "insurance", "technology", "telecommunications"], "regions": ["AE", "IL", "SA"], "malwares": ["Clayslide", "Helminth", "ISMAgent", "ISMInjector", "OopsIE", "ThreeDollars"]},
+    {"id": "report--708d589b-8d99-48fd-bbb6-2d47648f807f", "pb_file": "fighting-ursa.json", "last_updated": "2021-09-30T00:00:00.000Z", "title": "FIGHTING URSA", "industries": ["defence", "government-national", "government-regional", "healthcare"], "regions": ["AU", "CH", "ES", "GB", "KZ", "NO", "US", "ZA"], "malwares": ["Cannon", "Zebrocy"]},
+    {"id": "report--a615392f-4e01-4cb9-8b6c-ef9862f87da5", "pb_file": "pryinglibra.json", "last_updated": "2021-09-30T00:00:00.000Z", "title": "PRYING LIBRA", "industries": [], "regions": ["BR", "DZ", "EG", "ID", "PE", "PH", "TH", "TR", "VE", "VN"], "malwares": ["XMRIG"]},
     {"pb_file": "sample-campaign.json", "title": "Sample Entry", "industries": ["government"], "regions": ["RU"], "malwares": ["Hacking Team UEFI Rootkit"]},
     {"pb_file": "sample-twocampaign.json", "title": "Sample Two Campaigns", "industries": ["government"], "regions": ["BR", "GB"], "malwares": ["4H RAT", "Hacking Team UEFI Rootkit", "Red Alert 2.0"]}
 ]
