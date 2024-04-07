@@ -17,7 +17,7 @@ function dropQueryParameters(url) {
 }
 
 function emptyPlaybook() {
-    const message = `Welcome to the Unit 42 Playbook Viewer.<br/><br/>Please select a playbook to begin.`;
+    const message = `Welcome to the Injenius Playbook Viewer.<br/><br/>Please select a playbook to begin.`;
     history.pushState({}, "", dropQueryParameters(window.location.href));
     $('.playbook').removeClass('activebtn');
     $('.playbook-description').html(message);
@@ -409,6 +409,8 @@ function buildSideBar(playbooks) {
     const klass = 'btn playbook';
     parent.children('.playbook').remove();
 
+    playbooks.sort((a, b) => (a['title']).localeCompare((b['title'])));
+
     playbooks.forEach(playbook => {
         const {pb_file, title} = playbook;
         const id = `playbook_${pb_file.replace('.json', '')}`;
@@ -456,13 +458,13 @@ function buildMap() {
             count: n,
             radius: 15 * (n / 2),
             code: i,
-            country: iso3_to_data[i]['country'],
             fillKey: 'target'
         };
 
         if (data) {
             e['latitude'] = data['latitude'];
             e['longitude'] = data['longitude'];
+            e['country'] = data['country']
         } else {
             // iso3_to_data is missing an entry for the country
         }
@@ -807,7 +809,7 @@ function addInfoboxIndicatorTable(playbook) {
     sortIndicators(indicators);
 
     const indicatorTypesForList = ['file', 'domain-name', 'url', 'ipv4-addr', 'ipv6-addr'];
-    const indicatorList = indicators.filter(i => indicatorTypesForList.includes(i.p.type));
+    const indicatorList = indicators//.filter(i => indicatorTypesForList.includes(i.p.type));
     const indicatorListByType = indicatorList.reduce((r, i, idx) => {
         const {type, value} = i.p;
         i.li = `<li class="indicator-list-entry" id="${idx}"><pre class="indicator-list-inner">${value}</pre></li>`;
@@ -903,7 +905,7 @@ function addInfoBox2(report, playbook) {
         return `<span class="flag-icon flag-icon-${s.toLowerCase()}" title="${title}"></span>`;
     }).join(' ');
 
-    // const identityTypes = identityInformation['types'].map(t => industry_class_ov[t] || t).sort().join(', ');
+    //const identityTypes = identityInformation['types'].map(t => industry_class_ov[t] || t).sort().join(', ');
     const identityTypes = '';
 
     const malwareNames = malwareObjects.reduce((r, m) => {
@@ -1010,7 +1012,7 @@ function addReportLinks(playbook) {
         }
     });
 
-    parsed_reports.sort((a, b) => new Date(b.last_seen) - new Date(a.last_seen));
+    parsed_reports.sort((a, b) => new Date(a.last_seen) - new Date(b.last_seen));
 
     parsed_reports.forEach(r => {
         const months = ['January', 'February', 'March', 'April', 'May', 'June',
@@ -1295,7 +1297,8 @@ function writeIndicatorTable(playbook, ap, indicators, relationships) {
         indicators.forEach(i => {
             // Retrieve the indicator description from the relationship between indicator and attack-pattern
             // Provide backwards-compatibility with playbooks that stored the description in the indicator object
-            const {description} = relationships.find(r => (r && (r.source_ref === i.id) && (r.target_ref === ap.id))) || {description: i.name};
+            let {description} = relationships.find(r => (r && (r.source_ref === i.id) && (r.target_ref === ap.id))) || {description: i.name};
+            if (!description) { description = i.name }
             const malwares = getRelatedMalware(i.id, playbook);
             const malwareInfo = malwares.length ? writeMalwareTooltip(malwares) : `<td></td>`;
 
